@@ -219,3 +219,339 @@
   border-radius: 8px;
   font-size: 0.875rem;
 }
+
+/* Clickable Subfolder Stat Card */
+.stat-item-clickable {
+  cursor: pointer;
+  border-color: rgba(251, 191, 36, 0.25);
+  background: rgba(245, 158, 11, 0.06);
+  transition: all 0.2s ease;
+}
+
+.stat-item-clickable:hover {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: #fbbf24;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
+}
+
+.stat-item-clickable .stat-label span {
+  font-size: 0.68rem;
+  color: #fbbf24;
+  text-transform: none;
+  margin-left: 2px;
+}
+
+.stat-item-active {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 1px #f59e0b, 0 4px 14px rgba(245, 158, 11, 0.2);
+}
+
+/* Panel Header & Navigation */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.nav-back-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f1f5f9;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.nav-back-btn:hover {
+  background: rgba(59, 130, 246, 0.25);
+  border-color: #3b82f6;
+  color: #60a5fa;
+}
+
+.toggle-subfolders-btn {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fef08a;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.toggle-subfolders-btn:hover,
+.toggle-subfolders-btn.active {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: #fbbf24;
+  color: #ffffff;
+}
+
+.count-pill {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+/* Breadcrumbs */
+.path-breadcrumbs {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.55rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Consolas', 'Segoe UI', monospace;
+  font-size: 0.85rem;
+  color: #38bdf8;
+  overflow-x: auto;
+}
+
+.breadcrumbs-list {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.crumb-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.crumb-btn {
+  background: transparent;
+  border: none;
+  color: #38bdf8;
+  font-size: 0.82rem;
+  font-family: inherit;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.crumb-btn:hover:not(.active) {
+  background: rgba(56, 189, 248, 0.15);
+  color: #7dd3fc;
+  text-decoration: underline;
+}
+
+.crumb-btn.active {
+  color: #f1f5f9;
+  font-weight: 600;
+  cursor: default;
+}
+
+.crumb-sep {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+/* Loading animation */
+.loading-spinner {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto;
+  border: 3px solid rgba(96, 165, 250, 0.2);
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Windows Subfolders Explorer */
+.subfolders-section {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.subfolders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.subfolders-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.subfolders-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+}
+
+.subfolders-hint {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.subfolder-search-input {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.82rem;
+  color: #f1f5f9;
+  outline: none;
+  min-width: 200px;
+  transition: border-color 0.2s ease;
+}
+
+.subfolder-search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+.empty-subfolders {
+  text-align: center;
+  color: #94a3b8;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* Windows Folder Grid */
+.windows-folders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+/* Windows-style Folder Card */
+.windows-folder-card {
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.9rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.windows-folder-card:hover {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(96, 165, 250, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(96, 165, 250, 0.35);
+}
+
+.windows-folder-card:active {
+  transform: translateY(-1px);
+}
+
+/* Graphic Area */
+.windows-folder-graphic {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 68px;
+}
+
+.windows-folder-svg {
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+  transition: transform 0.2s ease;
+}
+
+.windows-folder-card:hover .windows-folder-svg {
+  transform: scale(1.05);
+}
+
+.folder-item-pill {
+  position: absolute;
+  bottom: 4px;
+  right: 18px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #fcd34d;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* Meta Information */
+.windows-folder-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  width: 100%;
+}
+
+.windows-folder-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  padding: 0 0.25rem;
+}
+
+.windows-folder-count {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+/* Peek Preview items */
+.windows-folder-peek-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 0.4rem;
+}
+
+.peek-item {
+  font-size: 0.68rem;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  padding: 0 0.2rem;
+}
+

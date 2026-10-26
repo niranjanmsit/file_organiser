@@ -8,6 +8,14 @@ pub struct DriveInfo {
     pub path: String,
 }
 
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct SubfolderItem {
+    pub name: String,
+    pub path: String,
+    pub item_count: usize,
+    pub preview_files: Vec<String>,
+}
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct FolderInfo {
     pub name: String,
@@ -16,6 +24,7 @@ pub struct FolderInfo {
     pub total_folders: usize,
     pub total_size_bytes: u64,
     pub sample_files: Vec<String>,
+    pub subfolders: Vec<SubfolderItem>,
 }
 
 #[tauri::command]
@@ -74,6 +83,7 @@ fn inspect_folder(path: String) -> Result<FolderInfo, String> {
     let mut total_folders = 0;
     let mut total_size_bytes = 0u64;
     let mut sample_files = Vec::new();
+    let mut subfolders = Vec::new();
 
     if let Ok(entries) = fs::read_dir(folder_path) {
         for entry in entries.flatten() {
@@ -89,10 +99,30 @@ fn inspect_folder(path: String) -> Result<FolderInfo, String> {
                     }
                 } else if ft.is_dir() {
                     total_folders += 1;
+                    let sub_path = entry.path();
+                    let sub_name = entry.file_name().to_string_lossy().to_string();
+                    let mut item_count = 0;
+                    let mut previews = Vec::new();
+                    if let Ok(sub_entries) = fs::read_dir(&sub_path) {
+                        for sub_e in sub_entries.flatten() {
+                            item_count += 1;
+                            if previews.len() < 3 {
+                                previews.push(sub_e.file_name().to_string_lossy().to_string());
+                            }
+                        }
+                    }
+                    subfolders.push(SubfolderItem {
+                        name: sub_name,
+                        path: sub_path.to_string_lossy().to_string(),
+                        item_count,
+                        preview_files: previews,
+                    });
                 }
             }
         }
     }
+
+    subfolders.sort_by(|a, b| a.name.to_lowercase().cmp(&b.name.to_lowercase()));
 
     Ok(FolderInfo {
         name: folder_name,
@@ -101,6 +131,7 @@ fn inspect_folder(path: String) -> Result<FolderInfo, String> {
         total_folders,
         total_size_bytes,
         sample_files,
+        subfolders,
     })
 }
 
